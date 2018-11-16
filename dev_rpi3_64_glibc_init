@@ -1,0 +1,19 @@
+export PROJECT=dev_rpi3_64_glibc_labs
+export PROJECT_ROOT=`pwd`/${PROJECT}
+
+mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/src,build-tools/data,\
+doc,images,kernel,project,rootfs,sysapps,tmp,tools,bin}
+
+cp `pwd`/common-data/hello.c ${PROJECT_ROOT}/build-tools/data
+
+cat > ./dev_rpi3_64_glibc << "EOF"
+export PROJECT=dev_rpi3_64_glibc_labs
+export PROJECT_ROOT=`pwd`/${PROJECT}
+export ARCH=arm64
+export TARGET=aarch64-rpi3-linux-gnu
+export CROSS_COMPILE=${TARGET}-
+export PREFIX=${PROJECT_ROOT}/tools
+export TARGET_PREFIX=${PREFIX}/${TARGET}
+export PATH=${TARGET_PREFIX}/bin:${PROJECT_ROOT}/bin:${PATH}
+cd ${PROJECT_ROOT}
+EOF
