@@ -4,6 +4,8 @@ export PROJECT_ROOT=`pwd`/${PROJECT}
 mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/src,build-tools/data,\
 doc,images,kernel,project,rootfs,sysapps,tmp,tools,bin}
 
+cp `pwd`/common-data/crosstool-ng.sh ${PROJECT_ROOT}/build-tools
+cp `pwd`/rpi3_64_glibc-data/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/common-data/hello.c ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/common-data/Makefile ${PROJECT_ROOT}/build-tools/data
 
