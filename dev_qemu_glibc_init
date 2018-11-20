@@ -5,8 +5,9 @@ mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/src,build-tools/data,\
 doc,images,kernel,project,rootfs,sysapps,tmp,tools,bin}
 
 cp `pwd`/common-data/hello.c ${PROJECT_ROOT}/build-tools/data
+cp `pwd`/common-data/Makefile ${PROJECT_ROOT}/build-tools/data
 
-cp `pwd`/common-data/start_qemu.sh ${PROJECT_ROOT}/bin
+cp `pwd`/qemu_glibc-data/start_qemu.sh ${PROJECT_ROOT}/bin
 
 cat > ./dev_qemu_glibc << "EOF"
 export PROJECT=dev_qemu_glibc_labs
