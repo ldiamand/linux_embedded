@@ -12,6 +12,9 @@ cp `pwd`/common-data/Makefile ${PROJECT_ROOT}/build-tools/data
 
 cp `pwd`/qemu_glibc-data/start_qemu.sh ${PROJECT_ROOT}/bin
 
+cp `pwd`/qemu_glibc-data/u-boot.sh ${PROJECT_ROOT}/bootloader
+cp `pwd`/qemu_glibc-data/u-boot.config ${PROJECT_ROOT}/bootloader/data
+
 cat > ./dev_qemu_glibc << "EOF"
 export PROJECT=dev_qemu_glibc_labs
 export PROJECT_ROOT=`pwd`/${PROJECT}
