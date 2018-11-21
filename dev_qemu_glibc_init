@@ -4,13 +4,13 @@ export PROJECT_ROOT=`pwd`/${PROJECT}
 mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/src,build-tools/data,\
 doc,images,kernel/data,project,rootfs,sysapps,tmp,tools,bin}
 
+cp `pwd`/qemu_glibc-data/start_qemu.sh ${PROJECT_ROOT}/bin
+
 cp `pwd`/common-data/crosstool-ng.sh ${PROJECT_ROOT}/build-tools
 cp `pwd`/qemu_glibc-data/verify-toolchain.sh ${PROJECT_ROOT}/build-tools
 cp `pwd`/qemu_glibc-data/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/common-data/hello.c ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/common-data/Makefile ${PROJECT_ROOT}/build-tools/data
-
-cp `pwd`/qemu_glibc-data/start_qemu.sh ${PROJECT_ROOT}/bin
 
 cp `pwd`/common-data/u-boot.sh ${PROJECT_ROOT}/bootloader
 cp `pwd`/qemu_glibc-data/u-boot.config ${PROJECT_ROOT}/bootloader/data
