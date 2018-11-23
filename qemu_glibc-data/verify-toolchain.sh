@@ -13,6 +13,6 @@ file data/hello | grep -q 'ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV
     echo 'Compilación con bibliotecas dinamicas... OK'
 
 # Verificamos la ejecución con bibliotecas dinámicas
-qemu-arm -L `arm-linux-gcc -print-sysroot` data/hello | grep -q 'Hola Mundo' \
+qemu-arm -L `${CROSS_COMPILE}gcc -print-sysroot` data/hello | grep -q 'Hola Mundo' \
     && echo 'Ejecución con bibliotecas dinámicas... OK'
 
