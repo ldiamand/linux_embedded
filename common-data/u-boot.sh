@@ -11,3 +11,6 @@ cp ../data/u-boot.config .config
 # Generamos u-boot
 make
 
+# Copiamos el u-boot generado a la carpeta data
+cp ${UBOOT_PATH}/${UBOOT_IMG} ../data
+

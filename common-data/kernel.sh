@@ -11,3 +11,9 @@ cp ../data/linux.config .config
 # Generamos u-boot
 make -j 4
 
+# Copiamos el kernel generado a la carpeta data
+cp ${KERNEL_PATH}/${KERNEL_IMAGE} ../data
+
+# Copiamos el dtb generado a la carpeta data
+cp ${DTB_PATH}/${DTB_IMAGE} ../data
+

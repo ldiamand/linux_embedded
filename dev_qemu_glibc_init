@@ -27,5 +27,11 @@ export CROSS_COMPILE=${TARGET}-
 export PREFIX=${PROJECT_ROOT}/tools
 export TARGET_PREFIX=${PREFIX}/${TARGET}
 export PATH=${TARGET_PREFIX}/bin:${PROJECT_ROOT}/bin:${PATH}
+export KERNEL_IMAGE=zImage
+export KERNEL_PATH=${PROJECT_PREFIX}/kernel/linux-stable/arch/${ARCH}/boot
+export DTB_IMAGE=vexpress-v2p-ca9.dtb
+export DTB_PATH=${KERNEL_PATH}/dts
+export UBOOT_IMG=u-boot
+export UBOOT_PATH=${PROJECT_PREFIX}/bootloader/u-boot
 cd ${PROJECT_ROOT}
 EOF

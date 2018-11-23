@@ -25,5 +25,9 @@ export CROSS_COMPILE=${TARGET}-
 export PREFIX=${PROJECT_ROOT}/tools
 export TARGET_PREFIX=${PREFIX}/${TARGET}
 export PATH=${TARGET_PREFIX}/bin:${PROJECT_ROOT}/bin:${PATH}
+export KERNEL_IMAGE=Image
+export KERNEL_PATH=${PROJECT_PREFIX}/kernel/linux-stable/arch/${ARCH}/boot
+export DTB_IMAGE=bcm2837-rpi-3-b.dtb
+export DTB_PATH=${KERNEL_PATH}/dts/broadcom
 cd ${PROJECT_ROOT}
 EOF
