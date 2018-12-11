@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Descargamos el kernel
-git clone -b v4.18.9 --depth 1 \
+git clone -b v4.19.2 --depth 1 \
     git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 cd linux-stable
 
