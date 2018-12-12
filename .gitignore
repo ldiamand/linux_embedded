@@ -4,4 +4,7 @@ dev_rpi3_64_glibc_labs/
 dev_qemu_glibc
 dev_qemu_glibc_labs/
 
+dev_bbb_glibc
+dev_bbb_glibc_labs/
+
 ver

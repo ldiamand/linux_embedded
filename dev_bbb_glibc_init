@@ -1,7 +1,7 @@
 export PROJECT=dev_bbb_glibc_labs
 export PROJECT_ROOT=`pwd`/${PROJECT}
 
-mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/src,build-tools/data,\
+mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/{src,data},\
 doc,images,kernel/data,project,rootfs,sysapps,tmp,tools,bin}
 
 
@@ -21,7 +21,7 @@ cat > ./dev_bbb_glibc << "EOF"
 export PROJECT=dev_bbb_glibc_labs
 export PROJECT_ROOT=`pwd`/${PROJECT}
 export ARCH=arm64
-export TARGET=arm-unknonw-linux-gnueabihf
+export TARGET=arm-cortex_a8-linux-gnueabihf
 export CROSS_COMPILE=${TARGET}-
 export PREFIX=${PROJECT_ROOT}/tools
 export TARGET_PREFIX=${PREFIX}/${TARGET}
