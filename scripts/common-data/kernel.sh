@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Descargamos el kernel
-git clone -b v4.19.2 --depth 1 \
+git clone -b v5.0.7 --depth 1 \
     git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 cd linux-stable
 
@@ -9,7 +9,7 @@ cd linux-stable
 cp ../data/linux.config .config
 
 # Generamos u-boot
-make -j 4
+make -j 8
 
 # Copiamos el kernel generado a la carpeta data
 cp ${KERNEL_PATH}/${KERNEL_IMAGE} ../data

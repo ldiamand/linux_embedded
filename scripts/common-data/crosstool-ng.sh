@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Limpiamos la variable de entorno LD_LIBRARY_PATH
+unset LD_LIBRARY_PATH
+
 # Descargamos crosstool-ng
 git clone https://github.com/crosstool-ng/crosstool-ng.git
 cd crosstool-ng/
