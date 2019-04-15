@@ -13,6 +13,7 @@ cp `pwd`/scripts/qemu_glibc/uboot-test.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/qemu_glibc/kernel-test.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/qemu_glibc/build_pflash.sh ${PROJECT_ROOT}/bin
 
+# Tools
 cp `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
 
 # Toolchain
