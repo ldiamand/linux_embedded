@@ -13,22 +13,22 @@ cp `pwd`/scripts/qemu_glibc-data/kernel-test.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/common-data/list-libs.sh ${PROJECT_ROOT}/bin
 
 # Toolchain
-cp `pwd`/scripts/common-data/crosstool-ng.sh ${PROJECT_ROOT}/build-tools
-cp `pwd`/scripts/qemu_glibc-data/verify-toolchain.sh ${PROJECT_ROOT}/build-tools
+cp `pwd`/scripts/common-data/crosstool-ng.sh ${PROJECT_ROOT}/bin
+cp `pwd`/scripts/qemu_glibc-data/verify-toolchain.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/qemu_glibc-data/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/scripts/common-data/hello.c ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/scripts/common-data/Makefile ${PROJECT_ROOT}/build-tools/data
 
 # U-Boot
-cp `pwd`/scripts/common-data/u-boot.sh ${PROJECT_ROOT}/bootloader
+cp `pwd`/scripts/common-data/u-boot.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/qemu_glibc-data/u-boot.config ${PROJECT_ROOT}/bootloader/data
 
 # Linux kernel
-cp `pwd`/scripts/common-data/kernel.sh ${PROJECT_ROOT}/kernel
+cp `pwd`/scripts/common-data/kernel.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/qemu_glibc-data/linux.config ${PROJECT_ROOT}/kernel/data
 
 # Busybox
-cp `pwd`/scripts/common-data/busybox.sh ${PROJECT_ROOT}/sysapps
+cp `pwd`/scripts/common-data/busybox.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/common-data/busybox.config ${PROJECT_ROOT}/sysapps/data
 
 cat > ./build/dev_qemu_glibc << "EOF"
