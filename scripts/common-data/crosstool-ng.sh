@@ -12,6 +12,10 @@ make && make install
 # Compiamos la configuración pre-armada
 cp ../data/crosstool-ng.config .config
 
+# Actualizamos la configuración dado que estamos trabajando
+# con el master
+./ct-ng upgradeconfig
+
 # Generamos el juego de herramientas
 ./ct-ng build
 

@@ -4,7 +4,6 @@ export PROJECT_ROOT=`pwd`/${PROJECT}
 mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/{src,data},\
 doc,images,kernel/data,project,rootfs,sysapps,tmp,tools,bin}
 
-
 cp `pwd`/common-data/crosstool-ng.sh ${PROJECT_ROOT}/build-tools
 cp `pwd`/bbb_glibc-data/verify-toolchain.sh ${PROJECT_ROOT}/build-tools
 cp `pwd`/bbb_glibc-data/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
@@ -26,5 +25,9 @@ export CROSS_COMPILE=${TARGET}-
 export PREFIX=${PROJECT_ROOT}/tools
 export TARGET_PREFIX=${PREFIX}/${TARGET}
 export PATH=${TARGET_PREFIX}/bin:${PROJECT_ROOT}/bin:${PATH}
+export KERNEL_IMAGE=zImage
+export KERNEL_PATH=${PROJECT_ROOT}/kernel/linux-stable/arch/${ARCH}/boot
+export DTB_IMAGE=am335x-boneblack.dtb
+export DTB_PATH=${KERNEL_PATH}/dts
 cd ${PROJECT_ROOT}
 EOF
