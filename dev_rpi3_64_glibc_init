@@ -1,3 +1,4 @@
+
 export PROJECT=dev_rpi3_64_glibc_labs
 export PROJECT_ROOT=`pwd`/build/${PROJECT}
 
