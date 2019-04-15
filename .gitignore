@@ -8,3 +8,4 @@ dev_bbb_glibc
 dev_bbb_glibc_labs/
 
 ver
+build/
