@@ -24,7 +24,7 @@ cp `pwd`/data/common/hello.c ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/data/common/Makefile ${PROJECT_ROOT}/build-tools/data
 
 # U-Boot
-cp `pwd`/scripts/common/u-boot.sh ${PROJECT_ROOT}/bin
+cp `pwd`/scripts/qemu_glibc/u-boot.sh ${PROJECT_ROOT}/bin
 cp `pwd`/data/qemu_glibc/u-boot.config ${PROJECT_ROOT}/bootloader/data
 
 # Linux kernel
