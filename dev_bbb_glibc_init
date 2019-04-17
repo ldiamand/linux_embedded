@@ -42,7 +42,8 @@ export KERNEL_IMAGE=zImage
 export KERNEL_PATH=${PROJECT_ROOT}/kernel/linux-stable/arch/${ARCH}/boot
 export DTB_IMAGE=am335x-boneblack.dtb
 export DTB_PATH=${KERNEL_PATH}/dts
-export UBOOT_IMG=u-boot.bin
+export MLO_IMG=MLO
+export UBOOT_IMG=u-boot.img
 export UBOOT_PATH=${PROJECT_ROOT}/bootloader/u-boot
 cd ${PROJECT_ROOT}
 EOF
