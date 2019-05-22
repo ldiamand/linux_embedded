@@ -1,4 +1,7 @@
 #!/bin/sh
 
 export CROSSTOOL_NG_VERSION=1.24.0
+export U_BOOT_VERSION=v2019.04
+export LINUX_KERNEL_VERSION=v5.1.4
+export BUSYBOX_VERSION=1_30_1
 

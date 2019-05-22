@@ -4,7 +4,7 @@
 unset LD_LIBRARY_PATH
 
 # Cargamos las varialbes de entorno
-source setenv.sh
+. setenv.sh
 
 # Vamos al directorio de trabajo
 cd ${PROJECT_ROOT}/build-tools
