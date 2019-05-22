@@ -11,6 +11,7 @@ cp `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
 
 # Toolchain
 cp `pwd`/scripts/common/crosstool-ng.sh ${PROJECT_ROOT}/bin
+cp `pwd`/scripts/common/setenv.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/bbb_glibc/verify-toolchain.sh ${PROJECT_ROOT}/bin
 cp `pwd`/data/bbb_glibc/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/data/common/hello.c ${PROJECT_ROOT}/build-tools/data
