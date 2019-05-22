@@ -4,7 +4,7 @@ export PROJECT_BUILD=`pwd`/build
 export PROJECT_ROOT=${PROJECT_BUILD}/${PROJECT}
 
 mkdir -p ${PROJECT_BUILD}/download
-mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/data,\
+mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/data,download,\
 doc,images,kernel/data,project,rootfs,sysapps/data,tmp,tools,bin}
 
 # Qemu
@@ -18,6 +18,7 @@ cp `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
 
 # Toolchain
 cp `pwd`/scripts/common/crosstool-ng.sh ${PROJECT_ROOT}/bin
+cp `pwd`/scripts/common/setenv.sh ${PROJECT_ROOT}/bin
 cp `pwd`/scripts/qemu_glibc/verify-toolchain.sh ${PROJECT_ROOT}/bin
 cp `pwd`/data/qemu_glibc/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/data/common/hello.c ${PROJECT_ROOT}/build-tools/data
