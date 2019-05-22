@@ -8,11 +8,13 @@ cd ${PROJECT_ROOT}/build-tools
 
 # Descargamos crosstool-ng
 git clone https://github.com/crosstool-ng/crosstool-ng.git
+git checkcout crosstool-ng-1.24.0
 cd crosstool-ng/
 
 # Construimos crosstool-ng
 ./bootstrap
 ./configure --prefix=`pwd`
+#./configure --enable-local
 make && make install
 
 # Compiamos la configuración pre-armada
