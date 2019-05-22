@@ -3,6 +3,9 @@
 # Limpiamos la variable de entorno LD_LIBRARY_PATH
 unset LD_LIBRARY_PATH
 
+# Cargamos las varialbes de entorno
+source setenv.sh
+
 # Vamos al directorio de trabajo
 cd ${PROJECT_ROOT}/build-tools
 
@@ -10,7 +13,11 @@ cd ${PROJECT_ROOT}/build-tools
 git clone https://github.com/crosstool-ng/crosstool-ng.git
 cd crosstool-ng/
 
-# Construimos crosstool-ng
+# Traemos la versión a compilar
+git checkout crosstool-ng-${CROSSTOOL_NG_VERSION}
+
+# Construimos crosstool-ng (TODO: ver cuando este corregido el bug de
+# --enable-local
 ./bootstrap
 ./configure --prefix=`pwd`
 make && make install
@@ -19,7 +26,7 @@ make && make install
 cp ${PROJECT_ROOT}/build-tools/data/crosstool-ng.config .config
 
 # Actualizamos la configuración dado que estamos trabajando
-# con el master
+# con el master (lo hacemos igualmente por si el archivo es anterior)
 ./ct-ng upgradeconfig
 
 # Generamos el juego de herramientas
