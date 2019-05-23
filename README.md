@@ -70,3 +70,6 @@ file=output/images/rootfs.squashfs,if=sd,format=raw -append
 
 
 truncate -s %256k images/rootfs.sqfs
+
+
+sudo apt-get install liblz4-tool
