@@ -1,18 +1,14 @@
 #!/bin/sh
 
-cd build-tools
-./crosstool-ng.sh
-cd ..
+# Construimos el juego de herramientas
+crosstool-ng.sh
 
-cd bootloades
-./u-boot.sh
-cd ..
+# Construimos el gestor de arranque
+u-boot.sh
 
-cd kernel
-./kernel.sh
-cd ..
+# Construimos el kernel
+kernel.sh
 
-cd sysapps
-./busybox.sh
-cd ..
+# Construimos el sistema de archivos
+busybox.sh
 
