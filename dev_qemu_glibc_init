@@ -16,6 +16,7 @@ cp `pwd`/scripts/qemu_glibc/tap0down.sh ${PROJECT_ROOT}/bin
 
 # Tools
 cp `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
+cp `pwd`/scripts/common/makeall.sh ${PROJECT_ROOT}/bin
 
 # Toolchain
 cp `pwd`/scripts/common/crosstool-ng.sh ${PROJECT_ROOT}/bin
