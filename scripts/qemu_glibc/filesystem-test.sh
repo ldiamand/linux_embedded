@@ -9,8 +9,6 @@ export ROOT_FILE_SYSTEM=${PROJECT_ROOT}/images/rootfs.sqfs
 mksquashfs rootfs/ images/rootfs.sqfs -noappend
 truncate -s %256k images/rootfs.sqfs
 
-#dd if=images/rootfs.sqfs of=images/sd.img bs=1M conv=notrunc status=progress
-
 QEMU_AUDIO_DRV=none qemu-system-arm -M vexpress-a9 -m 128M -nographic \
   -kernel ${KERNEL_IMAGE} -dtb ${DTB_IMAGE} \
   -drive file=images/rootfs.sqfs,if=sd,format=raw \
