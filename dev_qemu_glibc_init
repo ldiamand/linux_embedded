@@ -55,3 +55,4 @@ export UBOOT_IMG=u-boot
 export UBOOT_PATH=${PROJECT_ROOT}/bootloader/u-boot
 cd ${PROJECT_ROOT}
 EOF
+
