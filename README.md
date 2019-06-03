@@ -26,6 +26,9 @@ if=ide,file=images/rootfs.squashfs -append "root=/dev/sda"
 qemu-system-i386 -m 64 -k fr -boot c -kernel images/bzImage -drive
 if=mtd,file=images/rootfs.squashfs -append "root=/dev/mtdblock0"
 
+qemu-system-x86_64 -kernel bzImage -initrd initrd.img-3.11
+ -append "root=/dev/ram rdinit=/sbin/init"
+
 By default grub is built for systems which have RAM at address 0x00000000.
 However the Versatile Express platform which we are targeting has RAM starting
 from 0x60000000 so we need to make a couple of modifications. First in
