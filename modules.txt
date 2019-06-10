@@ -1,0 +1,40 @@
+make INSTALL_MOD_PATH=rootfs -C ./kernel/linux-stable/ modules_install
+
+=== 5. Module Installation
+
+Modules which are included in the kernel are installed in the
+directory:
+
+	/lib/modules/$(KERNELRELEASE)/kernel/
+
+And external modules are installed in:
+
+	/lib/modules/$(KERNELRELEASE)/extra/
+
+--- 5.1 INSTALL_MOD_PATH
+
+	Above are the default directories but as always some level of
+	customization is possible. A prefix can be added to the
+	installation path using the variable INSTALL_MOD_PATH:
+
+		$ make INSTALL_MOD_PATH=/frodo modules_install
+		=> Install dir: /frodo/lib/modules/$(KERNELRELEASE)/kernel/
+
+	INSTALL_MOD_PATH may be set as an ordinary shell variable or,
+	as shown above, can be specified on the command line when
+	calling "make." This has effect when installing both in-tree
+	and out-of-tree modules.
+
+--- 5.2 INSTALL_MOD_DIR
+
+	External modules are by default installed to a directory under
+	/lib/modules/$(KERNELRELEASE)/extra/, but you may wish to
+	locate modules for a specific functionality in a separate
+	directory. For this purpose, use INSTALL_MOD_DIR to specify an
+	alternative name to "extra."
+
+		$ make INSTALL_MOD_DIR=gandalf -C $KDIR \
+		       M=$PWD modules_install
+		=> Install dir: /lib/modules/$(KERNELRELEASE)/gandalf/
+
+
