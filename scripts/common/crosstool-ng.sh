@@ -11,7 +11,6 @@ cd ${PROJECT_ROOT}/build-tools
 
 # Descargamos crosstool-ng
 git clone https://github.com/crosstool-ng/crosstool-ng.git
-git checkcout crosstool-ng-1.24.0
 cd crosstool-ng/
 
 # Traemos la versión a compilar

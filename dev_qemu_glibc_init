@@ -1,18 +1,26 @@
+export ARCHITECTURE=qemu
 
-export PROJECT=dev_qemu_glibc_labs
+export PROJECT=dev_${ARCHITECTURE}_glibc_labs
 export PROJECT_BUILD=`pwd`/build
 export PROJECT_ROOT=${PROJECT_BUILD}/${PROJECT}
 
-mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/data,download,\
-doc,images,kernel/data,project,rootfs,sysapps/data,tmp,tools,bin}
+export ARCH=arm
+export TARGET=arm-unknown-linux-gnueabihf
+export CROSS_COMPILE=${TARGET}-
+export PREFIX=${PROJECT_ROOT}/tools
+export TARGET_PREFIX=${PREFIX}/${TARGET}
+
+mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/data,buildroot/data,\
+download,doc,images,kernel/data,project,rootfs,sysapps/data,tmp,tools,bin}
 
 # Qemu
-ln -s `pwd`/scripts/qemu_glibc/start_qemu.sh ${PROJECT_ROOT}/bin
-ln -s `pwd`/scripts/qemu_glibc/uboot-test.sh ${PROJECT_ROOT}/bin
-ln -s `pwd`/scripts/qemu_glibc/kernel-test.sh ${PROJECT_ROOT}/bin
-ln -s `pwd`/scripts/qemu_glibc/build_pflash.sh ${PROJECT_ROOT}/bin
-ln -s `pwd`/scripts/qemu_glibc/tap0up.sh ${PROJECT_ROOT}/bin
-ln -s `pwd`/scripts/qemu_glibc/tap0down.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/start_qemu.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/uboot-test.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/kernel-test.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/build_pflash.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/tap0up.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/tap0down.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/filesystem-test.sh ${PROJECT_ROOT}/bin
 
 # Tools
 ln -s `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
@@ -21,26 +29,26 @@ ln -s `pwd`/scripts/common/makeall.sh ${PROJECT_ROOT}/bin
 # Toolchain
 ln -s `pwd`/scripts/common/crosstool-ng.sh ${PROJECT_ROOT}/bin
 ln -s `pwd`/scripts/common/setenv.sh ${PROJECT_ROOT}/bin
-ln -s `pwd`/scripts/qemu_glibc/verify-toolchain.sh ${PROJECT_ROOT}/bin
-cp `pwd`/data/qemu_glibc/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/verify-toolchain.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/data/${ARCHITECTURE}_glibc/crosstool-ng.config ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/data/common/hello.c ${PROJECT_ROOT}/build-tools/data
 cp `pwd`/data/common/Makefile ${PROJECT_ROOT}/build-tools/data
 
 # U-Boot
-ln -s `pwd`/scripts/qemu_glibc/u-boot.sh ${PROJECT_ROOT}/bin
-cp `pwd`/data/qemu_glibc/u-boot.config ${PROJECT_ROOT}/bootloader/data
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/u-boot.sh ${PROJECT_ROOT}/bin
+ln -s `pwd`/data/${ARCHITECTURE}_glibc/u-boot.config ${PROJECT_ROOT}/bootloader/data
 
 # Linux kernel
 ln -s `pwd`/scripts/common/kernel.sh ${PROJECT_ROOT}/bin
-cp `pwd`/data/qemu_glibc/linux.config ${PROJECT_ROOT}/kernel/data
+ln -s `pwd`/data/${ARCHITECTURE}_glibc/linux.config ${PROJECT_ROOT}/kernel/data
 
 # Busybox
 ln -s `pwd`/scripts/common/busybox.sh ${PROJECT_ROOT}/bin
-cp `pwd`/data/common/busybox.config ${PROJECT_ROOT}/sysapps/data
+ln -s `pwd`/data/common/busybox.config ${PROJECT_ROOT}/sysapps/data
 
-cat > ./build/dev_qemu_glibc << "EOF"
-export PROJECT=dev_qemu_glibc_labs
-export PROJECT_ROOT=`pwd`/${PROJECT}
+cat > ./build/dev_${ARCHITECTURE}_glibc << EOF
+export PROJECT=${PROJECT}
+export PROJECT_ROOT=${PROJECT_BUILD}/${PROJECT}
 export ARCH=arm
 export TARGET=arm-unknown-linux-gnueabihf
 export CROSS_COMPILE=${TARGET}-

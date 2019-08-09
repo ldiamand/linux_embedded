@@ -9,5 +9,8 @@ QEMU_AUDIO_DRV=none qemu-system-arm -M vexpress-a9 -m 128M -nographic \
   -net nic -net tap,ifname=tap0,script=no,downscript=no \
   -drive file=${DATA}/pflash0.img,if=pflash,format=raw \
   -drive file=${DATA}/pflash1.img,if=pflash,format=raw \
-  -drive file=${DATA}/sd.img,if=sd,format=raw #\
-#  -serial pty
+  -drive file=images/rootfs.sqfs,if=sd,format=raw \
+  -append "console=ttyAMA0 root=/dev/mmcblk0 rootfstype=squashfs" \
+  -serial pty 
+#-s -S
+#  -drive file=${DATA}/sd.img,if=sd,format=raw #\
