@@ -11,7 +11,7 @@ export PREFIX=${PROJECT_ROOT}/tools
 export TARGET_PREFIX=${PREFIX}/${TARGET}
 
 mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/data,buildroot/data,\
-doc,images,kernel/data,project,rootfs,sysapps/data,tmp,tools,bin}
+download,doc,images,kernel/data,project,rootfs,sysapps/data,tmp,tools,bin}
 
 # Tools
 ln -s `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
