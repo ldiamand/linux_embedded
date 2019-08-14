@@ -9,4 +9,5 @@ QEMU_AUDIO_DRV=none qemu-system-arm -M vexpress-a9 -m 128M -nographic \
   -drive file=${DATA}/pflash0.img,if=pflash,format=raw \
   -drive file=${DATA}/pflash1.img,if=pflash,format=raw \
   -drive file=${DATA}/sd.img,if=sd,format=raw
+#  -S -s
 
