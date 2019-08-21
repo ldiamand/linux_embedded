@@ -22,6 +22,9 @@ ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/tap0up.sh ${PROJECT_ROOT}/bin
 ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/tap0down.sh ${PROJECT_ROOT}/bin
 ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/filesystem-test.sh ${PROJECT_ROOT}/bin
 
+# Qemu install
+ln -s `pwd`/scripts/${ARCHITECTURE}_glibc/qemu_install.sh ${PROJECT_ROOT}/bin
+
 # Tools
 ln -s `pwd`/scripts/common/list-libs.sh ${PROJECT_ROOT}/bin
 ln -s `pwd`/scripts/common/makeall.sh ${PROJECT_ROOT}/bin

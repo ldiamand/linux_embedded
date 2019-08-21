@@ -1,0 +1,1 @@
+../qemu_glibc/build_pflash.sh
