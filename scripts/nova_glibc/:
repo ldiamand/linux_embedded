@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Cargamos las varialbes de entorno
+. setenv.sh
+
+# Vamos al directorio de trabajo
+cd ${PROJECT_ROOT}/tools
+
+# Descargamos crosstool-ng
+git clone git://git.qemu-project.org/qemu.git
+cd qemu/
+
+# Traemos la versión a compilar
+git checkout ${_VERSION}
+
+# Construimos crosstool-ng (TODO: ver cuando este corregido el bug de
+# --enable-local
+./bootstrap
+./configure --prefix=`pwd`
+#./configure --enable-local
+make && make install
+
+# Compiamos la configuración pre-armada
+cp ${PROJECT_ROOT}/build-tools/data/crosstool-ng.config .config
+
+# Actualizamos la configuración dado que estamos trabajando
+# con el master (lo hacemos igualmente por si el archivo es anterior)
+./ct-ng upgradeconfig
+
+# Generamos el juego de herramientas
+./ct-ng build
+
+# Limpiamos el entorno
+./ct-ng clean
+
+cd ${PROJECT_ROOT}/build-tools/data
+
+# Probamos el juego de herramientas
+${CROSS_COMPILE}gcc --static hello.c -o hello_static
+
+# Probamos el Makefile
+make
+
+# Verificamos los generados
+verify-toolchain.sh
+

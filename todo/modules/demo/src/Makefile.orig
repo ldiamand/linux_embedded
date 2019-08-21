@@ -1,0 +1,8 @@
+obj-m += demo.o
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build ARCH=arm
+	CROSS_COMPILE=arm-qemu-linux-gnueabihf M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean

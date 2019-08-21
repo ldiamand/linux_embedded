@@ -1,0 +1,38 @@
+https://support.criticallink.com/redmine/projects/armc8-platforms/wiki/UBIFS_Nand_Boot
+https://support.criticallink.com/redmine/boards/28/topics/4525
+https://wiki.dh-electronics.com/index.php/UBI/UBIFS_Filesystem
+https://elinux.org/UBIFS
+http://www.armadeus.org/wiki/index.php?title=UBIFS
+https://e2e.ti.com/support/legacy_forums/embedded/linux/f/354/t/351610
+https://forums.xilinx.com/t5/Embedded-Linux/Create-ubi-file-system-for-Linux-on-ZC702/td-p/327037
+https://tinylab.gitbooks.io/elinux/en/dev_portals/File_Systems/UBIFS/UBIFS.html
+https://www.cnblogs.com/pengdonglin137/p/3434001.html
+http://www.voidcn.com/article/p-bjelqivt-bbt.html
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/mtd/partition.txt
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mtd/cmdlinepart.c
+
+
+For what it is worth I have been running some tests using "nandsim" while
+working on "UBI/UBIFS" support. This was done on my PC.
+
+ 
+
+nandsim example which is equivalent of the NAND chip found on Colibri VF SOM :
+
+ 
+
+modprobe ubi
+modprobe nandsim first_id_byte=0xc2 second_id_byte=0xdc third_id_byte=0x90
+fourth_id_byte=0x95
+flash_erase /dev/mtd0 0 0
+ubiformat /dev/mtd0 -f
+build/tmp/deploy/images/colibri-vf/core-image-minimal-colibri-vf.ubimg -s 2048
+ubiattach /dev/ubi_ctrl -m 0 -O 2048
+mount -t ubifs ubi0:rootfsa /mnt/
+
+
+http://lists.en.qi-hardware.com/pipermail/discussion/2010-November/006186.html
+http://u-boot.10912.n7.nabble.com/U-boot-and-UBI-problem-with-vexpress-board-td209805.html
+
+https://docs.mender.io/1.5/devices/raw-flash

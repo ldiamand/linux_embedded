@@ -1,0 +1,5 @@
+#!/bin/busybox sh
+mount -t devtmpfs devtmpfs /dev
+busybox mknod /dev/console c 5 1
+
+sh

@@ -1,0 +1,12 @@
+if TARGET_NOVA
+
+config SYS_BOARD
+	default "nova"
+
+config SYS_VENDOR
+	default "armltd"
+
+config SYS_CONFIG_NAME
+	default "nova"
+
+endif

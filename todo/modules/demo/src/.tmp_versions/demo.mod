@@ -1,0 +1,3 @@
+/media/user/extdata/dev/linux_embedded/build/dev_qemu_glibc_labs/kernel/modules/demo/src/demo.ko
+/media/user/extdata/dev/linux_embedded/build/dev_qemu_glibc_labs/kernel/modules/demo/src/demo.o
+
