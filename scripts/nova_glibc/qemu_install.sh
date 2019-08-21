@@ -20,5 +20,5 @@ cd build
 make && make install
 
 # Compiamos el binario generado
-ln -s ${PROJECT_ROOT}/tools/qemu/arm-softmmu/qemu-system-arm ${PROJECT_ROOT}/bin/qemu-system-arm4
+ln -s ${PROJECT_ROOT}/tools/qemu/arm-softmmu/qemu-system-arm ${PROJECT_ROOT}/bin/qemu-system-arm
 
