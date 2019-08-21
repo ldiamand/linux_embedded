@@ -12,7 +12,7 @@ truncate -s %256k images/rootfs.sqfs
 QEMU_AUDIO_DRV=none qemu-system-arm -M vexpress-a9 -m 128M -nographic \
   -kernel ${KERNEL_IMAGE} -dtb ${DTB_IMAGE} \
   -drive file=images/rootfs.sqfs,if=sd,format=raw \
-  -append "console=ttyAMA0 root=/dev/mmcblk0 rootfstype=squashfs"
-#  -serial pty
+  -append "console=ttyAMA0 root=/dev/mmcblk0 rootfstype=squashfs" \
+  -serial pty
 
 #qemu-system-x86_64 -kernel bzImage -initrd initrd.img-3.11 -append "root=/dev/ram rdinit=/sbin/init"
