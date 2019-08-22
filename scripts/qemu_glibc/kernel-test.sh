@@ -5,7 +5,7 @@ export DATA=${PROJECT_ROOT}/kernel/data
 export KERNEL_IMAGE=${DATA}/zImage
 export DTB_IMAGE=${DATA}/vexpress-v2p-ca9.dtb
 
-QEMU_AUDIO_DRV=none qemu-system-arm -M vexpress-a9 -m 128M \
+QEMU_AUDIO_DRV=none qemu-system-arm -M ${QEMU_MACHINE} -m 128M \
   -kernel ${KERNEL_IMAGE} -dtb ${DTB_IMAGE} -nographic
 #  -append "console=ttyAMA0 console=tty0" -serial pty
 

@@ -20,5 +20,11 @@ patch -p 1 < ${PROJECT_ROOT}/qemu/data/nova_qemu_4.0.0.patch
 mkdir build
 cd build
 ../configure --target-list=arm-softmmu --prefix=${PROJECT_ROOT}/tools/qemu
-make -j8 && make install
+make -j8
+
+# Corremos las pruebas
+make V=1 -k check
+
+# Instalamos
+make install
 
