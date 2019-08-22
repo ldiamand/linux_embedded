@@ -1,0 +1,1 @@
+../qemu_glibc/uboot-test.sh
