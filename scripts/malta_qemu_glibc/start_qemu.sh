@@ -5,8 +5,8 @@ export DATA=${PROJECT_ROOT}/bootloader/data
 export UBOOT_IMAGE=${DATA}/u-boot.bin
 
 qemu-system-mips -M ${QEMU_MACHINE} -m 256M -nographic \
-  -kernel ${PROJECT_ROOT}/kernel/data/uImage \
-  -dtb ${PROJECT_ROOT}/kernel/data/malta.dtb  \
+  -device loader,file=${PROJECT_ROOT}/kernel/data/uImage,addr=0x8001000 \
+  -dtb ${PROJECT_ROOT}/kernel/data/malta.dtb \
   -net nic -net tap,ifname=tap0,script=no,downscript=no 
 #  -drive file=${UBOOT_IMAGE},if=pflash,format=raw \
 #  -drive file=images/rootfs.sqfs,if=sd,format=raw 
