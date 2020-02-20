@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Cargamos las varialbes de entorno
+. setenv.sh
+
 export WORK=${PROJECT_ROOT}/bootloader
 export DATA=${WORK}/data
 
@@ -8,7 +11,7 @@ cd ${WORK}
 # Descargamos u-boot
 git clone git://git.denx.de/u-boot.git
 cd u-boot
-git checkout v2019.04
+git checkout ${U_BOOT_VERSION}
 
 # Compilamos la configuración pre-armada
 cp ${DATA}/u-boot.config .config
