@@ -9,6 +9,7 @@ export TARGET=arm-nova-linux-gnueabihf
 export CROSS_COMPILE=${TARGET}-
 export PREFIX=${PROJECT_ROOT}/tools
 export TARGET_PREFIX=${PREFIX}/${TARGET}
+export KERNEL_PATH=${PROJECT_ROOT}/kernel/linux-stable/arch/${ARCH}/boot
 
 mkdir -p ${PROJECT_ROOT}/{bootloader/data,build-tools/data,buildroot/data,\
 download,doc,images,kernel/data,project,rootfs,sysapps/data,tmp,tools,bin,qemu}
