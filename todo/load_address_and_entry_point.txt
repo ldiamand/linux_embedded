@@ -1,0 +1,329 @@
+Load Address is RAM location where the kernel binary image is to be copied. Entry Point is the Location of the copied binary to be executed by uboot to boot kernel.
+
+Your RAM is mapped at 80000000 and kernel LOAD ADDRESS is 80008000. bootm command uncompress the uImage from copied image location to 80008000 address and then calls the kernel entry point (may be the same address : 80008000) to execute the kernel.
+
+ I'm trying to understand how u-boot loads zImage into RAM.
+
+mkimage is called as
+
+mkimage -A arm -O linux -T kernel -C none -a 0x80008000 -e 0x80008040
+-d arch/arm/boot/zImage /bootImage/uImage
+
+Here, 'a' stands for load address and 'e' stands for entry point (64
+bytes are used for wrapping?). However, when loading uImage from
+u-boot, boot operation starts at address 0x80100000. Furthermore,
+u-boot recognizes the load address and entry point as 0x80008000.
+
+Loading from NAND 128MiB 3,3V 8-bit, offset 0x1c0000
+  Image Name:   Linux-2.6.27.8
+  Image Type:   ARM Linux Kernel Image (uncompressed)
+  Data Size:    1735148 Bytes =  1.7 MB
+  Load Address: 80008000
+  Entry Point:  80008000
+
+## Booting kernel from Legacy Image at 80100000 ...
+  Image Name:   Linux-2.6.27.8
+  Image Type:   ARM Linux Kernel Image (uncompressed)
+  Data Size:    1735148 Bytes =  1.7 MB
+  Load Address: 80008000
+  Entry Point:  80008000
+  Verifying Checksum ... OK
+  Loading Kernel Image ... OK
+
+OK
+
+Starting kernel ...
+
+Could you help me with this?
+
+abdullah
+_______________________________________________
+U-Boot mailing list
+[hidden email]
+http://lists.denx.de/mailman/listinfo/u-boot
+Belisko Marek
+Reply | Threaded | More
+May 06, 2014; 6:34am
+Re: Loading uImage into RAM
+Belisko Marek
+41 posts
+	
+Hi Abdullah,
+
+On Tue, May 6, 2014 at 10:55 AM, Abdullah YILDIZ
+<[hidden email]> wrote:
+
+> I'm trying to understand how u-boot loads zImage into RAM.
+>
+> mkimage is called as
+>
+> mkimage -A arm -O linux -T kernel -C none -a 0x80008000 -e 0x80008040
+> -d arch/arm/boot/zImage /bootImage/uImage
+>
+> Here, 'a' stands for load address and 'e' stands for entry point (64
+> bytes are used for wrapping?). However, when loading uImage from
+> u-boot, boot operation starts at address 0x80100000. Furthermore,
+> u-boot recognizes the load address and entry point as 0x80008000.
+Kernel uImage is loaded from NAND to ram at address which $loadaddr
+points to (check print $loadaddr)
+or env command which loading kerenl image from NAND.
+Then by bootm command is copied to address which is specified in
+mkimage (e.g. 0x80008000). Hope this helps.
+
+>
+> Loading from NAND 128MiB 3,3V 8-bit, offset 0x1c0000
+>   Image Name:   Linux-2.6.27.8
+>   Image Type:   ARM Linux Kernel Image (uncompressed)
+>   Data Size:    1735148 Bytes =  1.7 MB
+>   Load Address: 80008000
+>   Entry Point:  80008000
+>
+> ## Booting kernel from Legacy Image at 80100000 ...
+>   Image Name:   Linux-2.6.27.8
+>   Image Type:   ARM Linux Kernel Image (uncompressed)
+>   Data Size:    1735148 Bytes =  1.7 MB
+>   Load Address: 80008000
+>   Entry Point:  80008000
+>   Verifying Checksum ... OK
+>   Loading Kernel Image ... OK
+>
+> OK
+>
+> Starting kernel ...
+>
+> Could you help me with this?
+>
+> abdullah
+> _______________________________________________
+> U-Boot mailing list
+> [hidden email]
+> http://lists.denx.de/mailman/listinfo/u-boot
+... [show rest of quote]
+
+BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+_______________________________________________
+U-Boot mailing list
+[hidden email]
+http://lists.denx.de/mailman/listinfo/u-boot
+Abdullah YILDIZ-2
+Reply | Threaded | More
+May 06, 2014; 6:54am
+Re: Loading uImage into RAM
+Abdullah YILDIZ-2
+5 posts
+	
+Hi Belisko,
+
+On Tue, May 6, 2014 at 12:34 PM, Belisko Marek <[hidden email]> wrote:
+
+> Hi Abdullah,
+>
+> On Tue, May 6, 2014 at 10:55 AM, Abdullah YILDIZ
+> <[hidden email]> wrote:
+>> I'm trying to understand how u-boot loads zImage into RAM.
+>>
+>> mkimage is called as
+>>
+>> mkimage -A arm -O linux -T kernel -C none -a 0x80008000 -e 0x80008040
+>> -d arch/arm/boot/zImage /bootImage/uImage
+>>
+Why is entry point different from load address of uImage?
+>> Here, 'a' stands for load address and 'e' stands for entry point (64
+>> bytes are used for wrapping?). However, when loading uImage from
+>> u-boot, boot operation starts at address 0x80100000. Furthermore,
+>> u-boot recognizes the load address and entry point as 0x80008000.
+> Kernel uImage is loaded from NAND to ram at address which $loadaddr
+> points to (check print $loadaddr)
+> or env command which loading kerenl image from NAND.
+> Then by bootm command is copied to address which is specified in
+> mkimage (e.g. 0x80008000). Hope this helps.
+
+
+Kind regards.
+
+abdullah
+_______________________________________________
+U-Boot mailing list
+[hidden email]
+http://lists.denx.de/mailman/listinfo/u-boot
+Belisko Marek
+Reply | Threaded | More
+May 06, 2014; 6:57am
+Re: Loading uImage into RAM
+Belisko Marek
+41 posts
+	
+Hi Abdullah,
+
+On Tue, May 6, 2014 at 11:54 AM, Abdullah YILDIZ
+<[hidden email]> wrote:
+
+> Hi Belisko,
+>
+> On Tue, May 6, 2014 at 12:34 PM, Belisko Marek <[hidden email]> wrote:
+>> Hi Abdullah,
+>>
+>> On Tue, May 6, 2014 at 10:55 AM, Abdullah YILDIZ
+>> <[hidden email]> wrote:
+>>> I'm trying to understand how u-boot loads zImage into RAM.
+>>>
+>>> mkimage is called as
+>>>
+>>> mkimage -A arm -O linux -T kernel -C none -a 0x80008000 -e 0x80008040
+>>> -d arch/arm/boot/zImage /bootImage/uImage
+>>>
+> Why is entry point different from load address of uImage?
+It is set to skip 64bytes (0x40) of mkimage header.
+
+>>> Here, 'a' stands for load address and 'e' stands for entry point (64
+>>> bytes are used for wrapping?). However, when loading uImage from
+>>> u-boot, boot operation starts at address 0x80100000. Furthermore,
+>>> u-boot recognizes the load address and entry point as 0x80008000.
+>> Kernel uImage is loaded from NAND to ram at address which $loadaddr
+>> points to (check print $loadaddr)
+>> or env command which loading kerenl image from NAND.
+>> Then by bootm command is copied to address which is specified in
+>> mkimage (e.g. 0x80008000). Hope this helps.
+>
+>
+> Kind regards.
+>
+> abdullah
+
+BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+_______________________________________________
+U-Boot mailing list
+[hidden email]
+http://lists.denx.de/mailman/listinfo/u-boot
+Wolfgang Denk
+Reply | Threaded | More
+May 06, 2014; 11:35am
+Re: Loading uImage into RAM
+Wolfgang Denk
+25218 posts
+	
+Dear Belisko Marek,
+
+In message <CAAfyv34gspt4whV-sa=mo0fFunZfX8FA6+=[hidden email]> you wrote:
+
+> Hi Abdullah,
+>
+> On Tue, May 6, 2014 at 11:54 AM, Abdullah YILDIZ
+> <[hidden email]> wrote:
+> > Hi Belisko,
+> >
+> > On Tue, May 6, 2014 at 12:34 PM, Belisko Marek <[hidden email]> wrote:
+> >> Hi Abdullah,
+> >>
+> >> On Tue, May 6, 2014 at 10:55 AM, Abdullah YILDIZ
+> >> <[hidden email]> wrote:
+> >>> I'm trying to understand how u-boot loads zImage into RAM.
+> >>>
+> >>> mkimage is called as
+> >>>
+> >>> mkimage -A arm -O linux -T kernel -C none -a 0x80008000 -e 0x80008040
+> >>> -d arch/arm/boot/zImage /bootImage/uImage
+> >>>
+> > Why is entry point different from load address of uImage?
+> It is set to skip 64bytes (0x40) of mkimage header.
+... [show rest of quote]
+
+Actually the configuration given here looks bogus.  The 64 byte
+header of the legacy image format does NOT get copied to the address
+range starting at load address, so you actually start execution at a
+64 byte offset within your binary.  This is likely incorrect.
+
+A common error is to misunderstand that the "loadaddr" variable used
+in U-Boot as target address for the image download has _nothing_ to do
+with the "loadaddr" parameter of the mkimage command , which gives the
+address where the "bootm" command will copy the image to (eventually
+uncompressing it).  Unfortunately ARM never adapted to use this.
+
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: [hidden email]
+Die Scheu vor Verantwortung ist die Krankheit unserer Zeit.
+                                                 -- Otto von Bismarck
+_______________________________________________
+U-Boot mailing list
+[hidden email]
+http://lists.denx.de/mailman/listinfo/u-boot
+
+i'm trying to understand embedded Linux principles and can't figure out addresses at u-boot output.
+
+For example, I have UDOO board based on i.MX6 quad processor and I got following output from U-Boot:
+
+U-Boot 2013.10-rc3 (Jan 20 2014 - 13:33:34)
+
+CPU:   Freescale i.MX6Q rev1.2 at 792 MHz
+Reset cause: POR
+Board: UDOO
+DRAM:  1 GiB
+MMC:   FSL_SDHC: 0
+No panel detected: default to LDB-WVGA
+Display: LDB-WVGA (800x480)
+In:    serial
+Out:   serial
+Err:   serial
+Net:   using phy at 6
+FEC [PRIME]
+Warning: FEC MAC addresses don't match:
+Address in SROM is         00:c0:08:88:a5:e6
+Address in environment is  00:c0:08:88:9c:ce
+
+Hit any key to stop autoboot:  0 
+Booting from mmc ...
+4788388 bytes read in 303 ms (15.1 MiB/s)
+## Booting kernel from Legacy Image at 12000000 ...
+   Image Name:   Linux-3.0.35
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    4788324 Bytes = 4.6 MiB
+   Load Address: 10008000
+   Entry Point:  10008000
+   Verifying Checksum ... OK
+   Loading Kernel Image ... OK
+
+Starting kernel ...
+
+I don't understand the value of Load address 0x10008000. According to documentation for this particular processor, at address zone 0x10000000 - 0xffffffff is mapped main memory. But what is 0x8000 offset? I can't figure out reason for this value.
+
+I also don't understand address 0x12000000, where the kernel image is loaded from. Is there mapped memory region for SD card?
+
+Please, can you give me some explanation for these addresses or even better, some references to resources about this topic. My goal is to learn how to port u-boot and Linux kernel to another boards.
+
+Thank you!
+
+
