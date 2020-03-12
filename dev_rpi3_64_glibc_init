@@ -45,11 +45,11 @@ cat > ./build/dev_${ARCHITECTURE}_glibc << EOF
 export PROJECT=${PROJECT}
 export PROJECT_ROOT=${PROJECT_BUILD}/${PROJECT}
 export ARCH=arm64
-export TARGET=aarch64-rpi3-linux-gnu
-export CROSS_COMPILE=${TARGET}-
-export PREFIX=${PROJECT_ROOT}/tools
-export TARGET_PREFIX=${PREFIX}/${TARGET}
-export PATH=${TARGET_PREFIX}/bin:${PROJECT_ROOT}/bin:${PATH}
+export PREFIX=aarch64-rpi3-linux-gnu
+export CROSS_COMPILE=${PREFIX}-
+export TOOLS_DIR=${PROJECT_ROOT}/tools
+export TOOLS_PATH=${TOOLS_DIR}/${PREFIX}
+export PATH=${TOOLS_PATH}/bin:${PROJECT_ROOT}/bin:${PATH}
 export KERNEL_IMAGE=Image
 export KERNEL_PATH=${PROJECT_ROOT}/kernel/linux-stable/arch/${ARCH}/boot
 export DTB_IMAGE=bcm2837-rpi-3-b.dtb
